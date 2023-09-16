@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { contactsSelectors } from '../../redux/contacts';
 import css from './ContactItem.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts, deleteContact } from '../../redux/utils/contacts-api';
+import { fetchContacts } from '../../redux/utils/contacts-api';
+import { deleteContactSuccess } from 'redux/contacts/contacts-action';
 
 function ContactItem() {
   const contacts = useSelector(contactsSelectors.getContacts);
@@ -14,7 +15,7 @@ function ContactItem() {
   }, [dispatch]);
 
   const handleDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId));
+    dispatch(deleteContactSuccess(contactId));
   };
 
   return (
