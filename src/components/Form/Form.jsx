@@ -1,8 +1,9 @@
 import { useState } from "react";
 import css from './Form.module.css';
 import { toast } from 'react-toastify';
-import { contactsOperations, contactsSelectors } from '../../redux/contacts'
+import { contactsSelectors } from '../../redux/contacts'
 import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "redux/utils/contacts-api";
 
 
 function Form() {
@@ -28,7 +29,7 @@ function Form() {
             toast.error(`${name} is already in contacts`);
             return;
         } 
-        dispatch(contactsOperations.addContact({ name, number }));
+        dispatch(addContact({ name, number }));
         toast.success(`${name} has been added to contacts`);
         reset();
     };

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { contactsSelectors } from '../../redux/contacts';
 import css from './ContactItem.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts, deleteContact } from '../../redux/contacts/contacts-operation';
+import { fetchContacts, deleteContact } from '../../redux/utils/contacts-api';
 
 function ContactItem() {
   const contacts = useSelector(contactsSelectors.getContacts);
