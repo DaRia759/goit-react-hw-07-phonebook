@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { contactsSelectors } from '../../redux/contacts';
 import css from './ContactItem.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts } from '../../redux/utils/contacts-api';
-import { deleteContactSuccess } from 'redux/contacts/contacts-action';
+import { fetchContacts } from 'redux/utils/contacts-api';
+import { deleteContact } from 'redux/utils/contacts-api';
 
 function ContactItem() {
   const contacts = useSelector(contactsSelectors.getContacts);
@@ -14,8 +14,8 @@ function ContactItem() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleDeleteContact = (contactId) => {
-    dispatch(deleteContactSuccess(contactId));
+  const handleDeleteContact = contactId => {
+    dispatch(deleteContact(contactId));
   };
 
   return (
@@ -23,11 +23,11 @@ function ContactItem() {
       {contacts.length > 0 ? (
         <ul>
           {visibleContacts.map((contact) => (
-            <li key={contact.id} className={css.contact}>
+            <li key={contact.contactId} className={css.contact}>
               {contact.name}: {contact.number}{' '}
               <button
                 type='button'
-                onClick={() => handleDeleteContact(contact.id)}
+                onClick={() => handleDeleteContact(contact.contactId)}
               >
                 Delete
               </button>
